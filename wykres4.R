@@ -63,7 +63,7 @@ etykieta<-c(rep("Stan obecny",34),rep("Gdyby nie Oze",34))
 
 
 data<-data.frame(rep(Lata,2),c(CO2_kt_Elektrownie,Suma),etykieta)
-
+data
 data<-rename(data,value=c.CO2_kt_Elektrownie..Suma.)
 
 install.packages("viridis")
@@ -155,7 +155,91 @@ p1 <- ggplot(data, aes(x = time, y = value, color = etykieta, fill = etykieta)) 
 print(p1)
 
 
+############################################
+
+spalanie<-c(823,810,806,814,792,758,745,762,788,733)
+
+
+Lata2<-Lata[-(1:24),]
+
+
+filtry <- list(
+  geo = "PL",
+  siec = "TOTAL",
+  unit = "GWH",
+  nrg_bal = "GEP" # Gross electricity production
+)
+
+dane_total_electr <- get_eurostat(id = "nrg_bal_c", 
+                              filters = filtry, 
+                              time_format = "num") %>% 
+  select(values)
+
+
+filtry <- list(
+  geo = "PL",
+  siec = "RA000",
+  unit = "GWH",
+  nrg_bal = "GEP" # Gross electricity production
+)
+
+dane_oze_electr <- get_eurostat(id = "nrg_bal_c", 
+                                  filters = filtry,
+                                  time_format = "num") %>% 
+  select(values)
 
 
 
+
+dane_oze_electr2<-c(dane_oze_electr[-(1:24),])
+dane_total_electr2<-dane_total_electr[-(1:24),]
+
+dane_coal_electr2<-(dane_total_electr2-dane_oze_electr2)
+spalanieX<-spalanie*1000
+
+dane_oze_electr2<-rev(dane_oze_electr2[[1]])
+dane_total_electr2<-rev(dane_total_electr2[[1]])
+Lata2<-rev(Lata2[[1]])
+dane_coal_electr2<-rev(dane_coal_electr2[[1]])
+
+
+etykieta<-c(rep("Stan obecny",10),rep("Bez Oze",10))
+data<-data.frame(
+  val=c(dane_coal_electr2*spalanie/1000,dane_total_electr2*spalanie/1000),
+  labelek=etykieta,
+  lata=rep(Lata2,2)
+  
+)
+data
+p2 <- ggplot(data, aes(x = lata, y = val, color = labelek, fill = labelek)) +
+  
+  # 2. Dodaj geom_area() PRZED geom_line(), aby linie były na wierzchu
+  # position = "identity" zapobiega układaniu obszarów jeden na drugim
+  # alpha = 0.4 dodaje przezroczystość, aby było widać nakładanie się
+  geom_area(position = "identity", alpha = 0.4, linewidth = 0) + # linewidth=0 usuwa obrys obszaru
+  
+  # === Twój istniejący kod (bez zmian) ===
+  geom_line(linewidth = 1.2) + 
+  geom_point(size = 2.5) +
+  
+  # 3. Dodaj scale_fill_manual(), aby kolory wypełnienia pasowały do linii
+  scale_color_manual(values = c("Stan obecny" = "#0072B2", "Bez Oze" = "#D55E00")) +
+  scale_fill_manual(values = c("Stan obecny" = "#0072B2", "Bez Oze" = "#D55E00")) +
+  
+  # Używam theme_minimal() jako zamiennika, jeśli nie masz hrbrthemes
+  theme_minimal() + 
+  
+  labs(
+    title = "Emisje CO2 z przy produkcji elektryczności w elektrowniach w Polsce (2014-2023)",
+    subtitle = "Porównanie scenariusza rzeczywistego ze scenariuszem bez OZE",
+    y = "Emisje CO2 (w tys. ton)",
+    x = "Rok",
+    color = "Scenariusz", # Tytuł legendy
+    fill = "Scenariusz"  # Tytuł legendy (dla wypełnienia)
+  ) +
+  theme(legend.position = "bottom")
+
+# Wyświetl wykres
+options(scipen = 999)
+print(p2)
 
