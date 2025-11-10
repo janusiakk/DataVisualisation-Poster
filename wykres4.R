@@ -81,7 +81,7 @@ p <- data %>%
 p <- ggplotly(p, tooltip="text")
 p
 
-install.packages("hrbrthemes")
+
 library(ggplot2)
 library(dplyr)
 library(tibble)     # Do wczytania danych
@@ -153,3 +153,9 @@ p1 <- ggplot(data, aes(x = time, y = value, color = etykieta, fill = etykieta)) 
 
 # Wyświetl wykres
 print(p1)
+
+
+
+
+
+
