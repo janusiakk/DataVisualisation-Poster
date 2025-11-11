@@ -150,6 +150,7 @@ p1 <- ggplot(data, aes(x = time, y = value, color = etykieta, fill = etykieta)) 
     fill = "Scenariusz"  # Tytuł legendy (dla wypełnienia)
   ) +
   theme(legend.position = "bottom")
+  
 
 # Wyświetl wykres
 print(p1)
@@ -223,21 +224,32 @@ p2 <- ggplot(data, aes(x = lata, y = val, color = labelek, fill = labelek)) +
   geom_point(size = 2.5) +
   
   # 3. Dodaj scale_fill_manual(), aby kolory wypełnienia pasowały do linii
-  scale_color_manual(values = c("Stan obecny" = "#0072B2", "Bez Oze" = "#D55E00")) +
-  scale_fill_manual(values = c("Stan obecny" = "#0072B2", "Bez Oze" = "#D55E00")) +
+  scale_color_manual(values = c("Stan obecny" = "lightblue", "Bez Oze" = "brown")) +
+  scale_fill_manual(values = c("Stan obecny" = "lightblue", "Bez Oze" = "brown")) +
   
   # Używam theme_minimal() jako zamiennika, jeśli nie masz hrbrthemes
   theme_minimal() + 
   
   labs(
-    title = "Emisje CO2 z przy produkcji elektryczności w elektrowniach w Polsce (2014-2023)",
-    subtitle = "Porównanie scenariusza rzeczywistego ze scenariuszem bez OZE",
+    
     y = "Emisje CO2 (w tys. ton)",
     x = "Rok",
     color = "Scenariusz", # Tytuł legendy
     fill = "Scenariusz"  # Tytuł legendy (dla wypełnienia)
   ) +
-  theme(legend.position = "bottom")
+  theme(legend.position = "bottom")+
+  theme(plot.background = element_rect(fill="darkblue",color=NA),
+        panel.background = element_rect(fill="darkblue",color=NA),
+        plot.title = element_text(colour="white", hjust=0.4,face="bold",size=15),
+        axis.text = element_text(color = "white"),
+        axis.ticks = element_line(colour ="white"),
+        legend.background = element_rect(fill="darkblue"),
+        legend.text = element_text(colour="white"),
+        legend.ticks = element_line(colour = "black"),
+        legend.title = element_text(colour = "white"),
+        axis.title = element_text(colour = "white"),
+        panel.border = element_blank(),
+        legend.key = element_rect(fill = "darkblue", color = NA))
 
 # Wyświetl wykres
 options(scipen = 999)
