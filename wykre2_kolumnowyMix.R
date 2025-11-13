@@ -6,21 +6,38 @@
 
 ### Wczytuję biblioteki
 
+
+if (!requireNamespace("extrafont", quietly = TRUE)) {
+  install.packages("extrafont")
+}
+library(extrafont)
+
+if (!requireNamespace("showtext", quietly = TRUE)) {
+  install.packages("showtext")}
+library(showtext)
+font_add("LoveloBlack", "Lovelo-Black.otf") 
+font.families()
+showtext_auto(enable = TRUE)
+
+
+  
+# library(nazwa_pakietu)
+
 library(dplyr)
 library(tidyr)
 library(ggplot2)
 library(forcats)
 
 ### Wczytuję dane
-kopalne <- read.csv2("Kopalne.csv",sep=";",fileEncoding = "Windows-1250")
-oze <- read.csv2("OZE.csv",sep=";", fileEncoding = "Windows-1250")
-kopalneOze <- read.csv("KopalneIOZE.csv",sep=";",fileEncoding = "Windows-1250")
+# kopalne <- read.csv2("Dane/Kopalne.csv",sep=";",fileEncoding = "Windows-1250")
+# oze <- read.csv2("Dane/OZE.csv",sep=";", fileEncoding = "Windows-1250")
+kopalneOze <- read.csv("Dane/KopalneIOZE.csv",sep=";",fileEncoding = "Windows-1250")
 
 
-View(oze)
-View(kopalne)
-
-View(kopalneOze)
+# View(oze)
+# View(kopalne)
+# 
+# View(kopalneOze)
 
 str(kopalneOze)
 
@@ -43,8 +60,8 @@ kreski<-kopalneOze %>% select(Rok,Wartość,Source) %>% filter(Rok>2009, Source 
 ### Do fct_relevel by energia była dobrze ułożona
 ###
 poziomy=c("Pozostałe"="pozostałe","Gaz ziemny"="gaz_ziemny", "Węgiel brunatny"="węgiel_brunatny",
-          "Węgiel_kamienny"="węgiel_kamienny","Woda"="woda","Biogaz i biomasa"="biogaz i biomasa",
-          "Wiatr"="wiatr","Fotowoltaika"="fotowoltaika")
+          "Węgiel kamienny"="węgiel_kamienny","Energia Wodna"="woda","Biopaliwa"="biogaz i biomasa",
+          "Energia wiatrowa"="wiatr","Energia słoneczna"="fotowoltaika")
 
 ###
 ###Kod wykresu
@@ -52,45 +69,46 @@ poziomy=c("Pozostałe"="pozostałe","Gaz ziemny"="gaz_ziemny", "Węgiel brunatny
 kolumnowy<-kopalneOze %>% select(Rok, Wartość, Source) %>% filter(Source != "All") %>%
   filter(Rok>2009) %>% mutate(Source=fct_relevel(Source,poziomy)) %>% 
   ggplot(aes(x=Rok,y=Wartość,fill=Source)) + geom_col() +
-  scale_fill_discrete(palette = c("orange","purple","brown","black",
-                                  "blue","green","lightblue","yellow"),name="Źródło")+
-labs(title="Rozkład produkcji energii elektrycznej w Polsce\nze względu na źródło w latach 2010 - 2023 w GWh.",
-     x="Rok",y="Produkcja w GWh") +
-  theme(plot.background = element_rect(fill="darkblue"),
-        panel.background = element_rect(fill="darkblue"),
+  scale_fill_discrete(palette = c("orange","purple","brown","darkgrey",
+                                  "blue","green","lightblue","yellow"),name="Źródło Energii",labels=
+        c("Pozostałe","Gaz ziemny","Węgiel brunatny","Węgiel kamienny","Energia Wodna","Biopaliwa","Energia wiatrowa","Energia słoneczna "))+
+labs(x="Rok",y="Ilość energii w GWh") +
+  theme(panel.background = element_blank(),
+        axis.title = element_text(family="LoveloBlack",colour = "white",size=85),
+        plot.background = element_blank(),
+        panel.border = element_blank(),
         plot.title = element_text(colour="white", hjust=0.5),
-        axis.text = element_text(color = "white"),
         axis.ticks = element_line(colour ="white"),
-        legend.background = element_rect(fill="darkblue"),
-        legend.text = element_text(colour="white"),
+        legend.background = element_blank(),
         legend.ticks = element_line(colour = "black"),
-        legend.title = element_text(colour = "white"),
-        axis.title = element_text(colour = "white")) +
+        legend.text = element_text(family="LoveloBlack",colour="white",face="bold",size=75),
+        legend.title = element_text(family="LoveloBlack",colour = "white",face="bold",size=100),
+        axis.text = element_text(family="LoveloBlack",color = "white",size=75)) +
     geom_segment(data=kreski,aes(x=Rok-0.5, y=Suma, xend=Rok+0.5, yend=Suma),
                  color="white",linewidth = 0.8, inherit.aes = FALSE)
-
+?scale_fill_discrete
 kolumnowy
-
+ggsave("wykres2.png", kolumnowy, bg = "transparent", width = 7.5, height = 6, dpi = 600)
 ###
-### Wykrey waflowe - nie używane
-###
-rok <- 2005
-
-kwadraty<-kopalneOze %>% filter(Rok==rok, Source!="All") %>% mutate(procent=round(Wartość/sum(Wartość)*100)) %>% 
-  uncount(procent) %>% mutate(
-    x = rep(1:10, length.out = n()),
-    y= rep(1:10, each=10,length.out = n())
-  )
-
-kwadraty %>% ggplot(aes(x,y,fill=Source)) +geom_tile(color="black") +
-  coord_equal() + scale_fill_brewer(palette = "Set3")+theme_void()+
-  labs(title=paste("Rozkład produkcji energii elektrycznej względem\n źródeł w roku ",as.character(rok)))
-
-###
-### Śmieci
-###
-
-kopalneOze%>% select(Rok, Wartość, Source) %>% pivot_wider(names_from=Source, values_from = Wartość)
+# ### Wykrey waflowe - nie używane
+# ###
+# rok <- 2005
+# 
+# kwadraty<-kopalneOze %>% filter(Rok==rok, Source!="All") %>% mutate(procent=round(Wartość/sum(Wartość)*100)) %>% 
+#   uncount(procent) %>% mutate(
+#     x = rep(1:10, length.out = n()),
+#     y= rep(1:10, each=10,length.out = n())
+#   )
+# 
+# kwadraty %>% ggplot(aes(x,y,fill=Source)) +geom_tile(color="black") +
+#   coord_equal() + scale_fill_brewer(palette = "Set3")+theme_void()+
+#   labs(title=paste("Rozkład produkcji energii elektrycznej względem\n źródeł w roku ",as.character(rok)))
+# 
+# ###
+# ### Śmieci
+# ###
+# 
+# kopalneOze%>% select(Rok, Wartość, Source) %>% pivot_wider(names_from=Source, values_from = Wartość)
 
 
 
