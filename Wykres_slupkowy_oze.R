@@ -13,7 +13,7 @@ oze <- data.frame(
   Rok = c(2023,2020,2017,2014,2011),
   Solar = c(11107.09, 1957.92, 165.46, 99.45, 88.07),
   Wind = c(24176.36, 15800.05, 14909.04, 7675.63, 3204.55),
-  Bio = c(6374.22, 6932.76, 5308.56, 9161, 7149), 
+  Bio = c(7892, 8202, 6440, 10065, 7757), 
   Hydro= c(2409.51, 2118.34, 2559.58, 2182.45, 2331.38 )
 )
 # Solar = c(11107.09, 1957.92, 165.46, 6.89, 0.18)
@@ -30,7 +30,7 @@ p<-ggplot(df_long, aes(x = Rok, y = Wartość, fill = Kategoria)) +
   geom_bar(stat = "identity", position = "dodge") +
   scale_fill_manual(
     name = "Źródło energii",
-    labels = c("Biopaliwa stałe", "Energia wodna", "Energia słoneczna","Energia wiatrowa"),
+    labels = c("Biopaliwa", "Energia wodna", "Energia słoneczna","Energia wiatrowa"),
     values = c("green","blue",   "yellow", "lightblue")) +
   labs(
        x = "Rok", y = "Ilość energii w GWh") +
