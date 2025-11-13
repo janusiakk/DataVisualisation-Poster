@@ -1,11 +1,22 @@
+if (!requireNamespace("extrafont", quietly = TRUE)) {
+  install.packages("extrafont")
+}
+library(extrafont)
+
+if (!requireNamespace("showtext", quietly = TRUE)) {
+  install.packages("showtext")}
+library(showtext)
+font_add("LoveloBlack", "Lovelo-Black.otf")
+font.families()
+showtext_auto(enable = TRUE)
 oze <- data.frame(
   Rok = c(2023,2020,2017,2014,2011),
-  Solar = c(11107.09, 1957.92, 165.46, 6.89, 0.18),
+  Solar = c(11107.09, 1957.92, 165.46, 99.45, 88.07),
   Wind = c(24176.36, 15800.05, 14909.04, 7675.63, 3204.55),
   Bio = c(6374.22, 6932.76, 5308.56, 9161, 7149), 
   Hydro= c(2409.51, 2118.34, 2559.58, 2182.45, 2331.38 )
 )
-
+# Solar = c(11107.09, 1957.92, 165.46, 6.89, 0.18)
 library(ggplot2)
 library(tidyr)
 
@@ -15,25 +26,31 @@ df_long <- pivot_longer(oze, cols = c(Solar, Wind, Bio, Hydro),
                         values_to = "Wartość")
 df_long$Rok <- factor(df_long$Rok)
 
-ggplot(df_long, aes(x = Rok, y = Wartość, fill = Kategoria)) +
+p<-ggplot(df_long, aes(x = Rok, y = Wartość, fill = Kategoria)) +
   geom_bar(stat = "identity", position = "dodge") +
   scale_fill_manual(
     name = "Źródło energii",
-    labels = c("Biopaliwa stałe", "Energia Wodna", "Energia słoneczna","Energia wiatrowa"),
+    labels = c("Biopaliwa stałe", "Energia wodna", "Energia słoneczna","Energia wiatrowa"),
     values = c("green","blue",   "yellow", "lightblue")) +
-  labs(title = "Produkcja energii z oze",
+  labs(
        x = "Rok", y = "Ilość energii w GWh") +
 
   
   theme_minimal()+
   theme(
-    panel.background = element_rect(fill = "darkblue", color = NA),
-    plot.background = element_rect(fill = "darkblue", color = NA),
+    # panel.background = element_rect(fill = "darkblue", color = NA),
+    # plot.background = element_rect(fill = "darkblue", color = NA),
+    # panel.border = element_blank(),
+    panel.background = element_blank(),
+    plot.background = element_blank(),
     panel.border = element_blank(),
-    plot.title = element_text(color = "white", size = 16, face = "bold"),
-    axis.title = element_text(color = "white"),
-    axis.text = element_text(color = "white"),
-    legend.title = element_text(color = "white"),
-    legend.text = element_text(color = "white")
+    # plot.title = element_text(color = "white", size = 16, face = "bold"),
+    axis.title = element_text(family="LoveloBlack",color = "white",size=75),
+    axis.text = element_text(family="LoveloBlack",color = "white",size=50),
+    legend.title = element_text(family="LoveloBlack",color = "white",size=75),
+    legend.text = element_text(family="LoveloBlack",color = "white",size=44),
+    legend.position="bottom"
 
   )
+p
+ggsave("wykres1.png", p, bg = "transparent", width = 7, height = 4, dpi = 600)
