@@ -69,8 +69,8 @@ poziomy=c("Pozostałe"="pozostałe","Gaz ziemny"="gaz_ziemny", "Węgiel brunatny
 kolumnowy<-kopalneOze %>% select(Rok, Wartość, Source) %>% filter(Source != "All") %>%
   filter(Rok>2009) %>% mutate(Source=fct_relevel(Source,poziomy)) %>% 
   ggplot(aes(x=Rok,y=Wartość,fill=Source)) + geom_col() +
-  scale_fill_discrete(palette = c("orange","purple","brown","darkgrey",
-                                  "blue","green","lightblue","yellow"),name="Źródło Energii",labels=
+  scale_fill_discrete(palette = c("grey20","grey44","#b24b19","darkgrey",
+                                  "blue","#88cb46","lightblue","#fdf31c"),name="Źródło Energii",labels=
         c("Pozostałe","Gaz ziemny","Węgiel brunatny","Węgiel kamienny","Energia Wodna","Biopaliwa","Energia wiatrowa","Energia słoneczna "))+
 labs(x="Rok",y="Ilość energii w GWh") +
   theme(panel.background = element_blank(),
@@ -109,7 +109,7 @@ ggsave("wykres2.png", kolumnowy, bg = "transparent", width = 7.5, height = 6, dp
 # ###
 # 
 # kopalneOze%>% select(Rok, Wartość, Source) %>% pivot_wider(names_from=Source, values_from = Wartość)
-
+colors()
 
 
 

@@ -62,7 +62,7 @@ df<-dane %>% mutate(Zmienna=case_when(
 
 mapa<-wojewodztwa %>% left_join(df,by=c("JPT_NAZWA_"="Województwo")) %>% ggplot() +
   geom_sf(aes(fill=wsk),color="black",name="GWh z OZE na 1000 mieszkańców") +
-  scale_fill_gradient2(low="red",high="green", mid="yellow",midpoint=1.6,
+  scale_fill_gradient2(low="#de5e20",high="#88cb46", mid="#fdf31c",midpoint=1.6,
                        name=paste0(
                          "<span style='font-family:LoveloBlack; font-size:75pt; color:white; margin-right:50px;'>━━━━━━━━GWh</span><br>",
                          "<span style='font-family:arial; font-size:50pt; color:white'>━━━━━━━━━━━━━━━</span><br>",

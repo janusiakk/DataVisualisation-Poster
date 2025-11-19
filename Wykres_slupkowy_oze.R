@@ -31,7 +31,7 @@ p<-ggplot(df_long, aes(x = Rok, y = Wartość, fill = Kategoria)) +
   scale_fill_manual(
     name = "Źródło energii",
     labels = c("Biopaliwa", "Energia wodna", "Energia słoneczna","Energia wiatrowa"),
-    values = c("green","blue",   "yellow", "lightblue")) +
+    values = c("#88cb46","blue",   "#fdf31c", "lightblue")) +
   labs(
        x = "Rok", y = "Ilość energii w GWh") +
 
@@ -48,9 +48,12 @@ p<-ggplot(df_long, aes(x = Rok, y = Wartość, fill = Kategoria)) +
     axis.title = element_text(family="LoveloBlack",color = "white",size=75),
     axis.text = element_text(family="LoveloBlack",color = "white",size=50),
     legend.title = element_text(family="LoveloBlack",color = "white",size=75),
-    legend.text = element_text(family="LoveloBlack",color = "white",size=44),
-    legend.position="bottom"
+    legend.text = element_text(family="LoveloBlack",color = "white",size=55),
+    legend.position="bottom",
+    legend.justification = "left",
+    legend.box.margin = margin(t = 0, r = 0, b = 0, l = -50)
 
   )
 p
 ggsave("wykres1.png", p, bg = "transparent", width = 7, height = 4, dpi = 600)
+rgb(t(col2rgb("lightblue")), maxColorValue = 255)

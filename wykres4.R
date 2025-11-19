@@ -264,8 +264,8 @@ p2 <- ggplot(data, aes(x = lata, y = val, color = labelek, fill = labelek)) +
   geom_point(size = 2.5) +
   
   # 3. Dodaj scale_fill_manual(), aby kolory wypełnienia pasowały do linii
-  scale_color_manual(values = c("Stan obecny" = "yellow", "Wzrost Bez Oze" = "black")) +
-  scale_fill_manual(values = c("Stan obecny" = "yellow", "Wzrost Bez Oze" = "black")) +
+  scale_color_manual(values = c("Stan obecny" = "green", "Wzrost Bez Oze" = "black")) +
+  scale_fill_manual(values = c("Stan obecny" = "green", "Wzrost Bez Oze" = "black")) +
   
   # Używam theme_minimal() jako zamiennika, jeśli nie masz hrbrthemes
   theme_minimal() + 
@@ -283,9 +283,9 @@ p2 <- ggplot(data, aes(x = lata, y = val, color = labelek, fill = labelek)) +
         legend.background  = element_rect(fill = "transparent", color = NA),
         plot.title = element_text(colour="white", hjust=0.4,face="bold",size=15),
         axis.ticks = element_line(colour ="white"),
-        legend.text = element_text(family="LoveloBlack",colour="white",face="bold",size=75),
-        axis.text = element_text(family="LoveloBlack",color = "white",size=75),
-        axis.title = element_text(family="LoveloBlack",colour = "white",size=85),
+        legend.text = element_text(family="LoveloBlack",colour="white",face="bold",size=85),
+        axis.text = element_text(family="LoveloBlack",color = "white",size=85),
+        axis.title = element_text(family="LoveloBlack",colour = "white",size=95),
         panel.border = element_blank(),
         legend.title = element_blank())
 
