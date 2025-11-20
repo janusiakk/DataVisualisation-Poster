@@ -103,9 +103,9 @@ mapa2<-wojewodztwa %>% left_join(df,by=c("JPT_NAZWA_"="Województwo")) %>% ggplo
           color="black",name="GWh z OZE na 1000 mieszkańców") +
   scale_fill_manual(values = kolory,
                     name =paste0(
-                      "<span style='font-family:LoveloBlack; font-size:75pt; color:white; margin-right:50px;'>━━━━━━━━GWh</span><br>",
-                      "<span style='font-family:arial; font-size:50pt; color:white'>━━━━━━━━━━━━━━━</span><br>",
-                      "<span style='font-family:LoveloBlack; font-size:50pt; color:white'>1000 mieszkańców</span>" )) +
+                      "<span style='font-family:LoveloBlack; font-size:95pt; color:white; margin-right:50px;'>━━━━━━━━━━GWh</span><br>",
+                      "<span style='font-family:arial; font-size:75pt; color:white'>━━━━━━━━━━━━━━━</span><br>",
+                      "<span style='font-family:LoveloBlack; font-size:75pt; color:white'>1000 mieszkańców</span>" )) +
   theme(
     panel.background = element_rect(fill = "transparent", color = NA),
     plot.background  = element_rect(fill = "transparent", color = NA),
@@ -115,7 +115,7 @@ mapa2<-wojewodztwa %>% left_join(df,by=c("JPT_NAZWA_"="Województwo")) %>% ggplo
     axis.line = element_blank(),
     axis.text = element_blank(),
     axis.ticks = element_blank(),
-    legend.text = element_text(family="LoveloBlack",colour="white",size=50),
+    legend.text = element_text(family="LoveloBlack",colour="white",size=75),
     legend.ticks = element_line(colour = "black"),
     legend.title = element_markdown()) +
   geom_sf_text(data=extreme, 

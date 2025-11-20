@@ -66,11 +66,14 @@ poziomy=c("Pozostałe"="pozostałe","Gaz ziemny"="gaz_ziemny", "Węgiel brunatny
 ###
 ###Kod wykresu
 ###
+breaks1 <- unique(kopalneOze$Rok)
+breaks2 <- seq(2010,2023,2)
+
 kolumnowy<-kopalneOze %>% select(Rok, Wartość, Source) %>% filter(Source != "All") %>%
   filter(Rok>2009) %>% mutate(Source=fct_relevel(Source,poziomy)) %>% 
   ggplot(aes(x=Rok,y=Wartość,fill=Source)) + geom_col() +
   scale_fill_discrete(palette = c("grey20","grey44","#b24b19","darkgrey",
-                                  "blue","#88cb46","lightblue","#fdf31c"),name="Źródło Energii",labels=
+                                  "#4A90E2","#88cb46","lightblue","#fdf31c"),name="Źródło Energii",labels=
         c("Pozostałe","Gaz ziemny","Węgiel brunatny","Węgiel kamienny","Energia Wodna","Biopaliwa","Energia wiatrowa","Energia słoneczna "))+
 labs(x="Rok",y="Ilość energii w GWh") +
   theme(panel.background = element_blank(),
@@ -78,20 +81,23 @@ labs(x="Rok",y="Ilość energii w GWh") +
         plot.background = element_blank(),
         panel.border = element_blank(),
         plot.title = element_text(colour="white", hjust=0.5),
-        axis.ticks = element_line(colour ="white"),
+        axis.ticks.y = element_line(colour ="white"),
+        axis.ticks.x=element_blank(),
         legend.background = element_blank(),
         legend.ticks = element_line(colour = "black"),
         legend.text = element_text(family="LoveloBlack",colour="white",face="bold",size=75),
         legend.title = element_text(family="LoveloBlack",colour = "white",face="bold",size=100),
         axis.text = element_text(family="LoveloBlack",color = "white",size=75),
-        axis.text.x=element_text(angle=90,vjust=0.5)) +
+        axis.text.x=element_text(angle=90,vjust=0.5,hjust = 1,
+                                 margin=margin(t = -13)),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank()) +
     geom_segment(data=kreski,aes(x=Rok-0.5, y=Suma, xend=Rok+0.5, yend=Suma),
                  color="white",linewidth = 0.8, inherit.aes = FALSE)+
-  scale_x_continuous(breaks=unique(kopalneOze$Rok))
+  scale_x_continuous(breaks=breaks2)
 ?scale_x_discrete
 View(kopalneOze)
-
-kolumnowy
+?theme
 
 ggsave("wykres2.png", kolumnowy, bg = "transparent", width = 7.5, height = 6, dpi = 600)
 ###
