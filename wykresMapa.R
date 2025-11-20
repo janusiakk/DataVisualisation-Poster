@@ -80,4 +80,50 @@ mapa<-wojewodztwa %>% left_join(df,by=c("JPT_NAZWA_"="Województwo")) %>% ggplot
         legend.text = element_text(family="LoveloBlack",colour="white",size=50),
         legend.ticks = element_line(colour = "black"),
         legend.title = element_markdown())
+mapa
 ggsave("wykres3.png",mapa,bg = "transparent", width = 7.5, height = 6, dpi = 600)
+
+###
+### Generowanie mapy 2 - inne kolor, skale, podpis min max
+###
+
+breaks=c(0,0.75,1.5,2.25,3,4.5)
+
+gradient=colorRampPalette(c("#c6ffb3","#66ff33"))
+kolory=(gradient(5))
+breaks_labels=(c("0 - 0.75","0.75 - 1.5","1.5 - 2.25","2.25 - 3","3 - 4.5"))
+
+pom<-wojewodztwa %>% left_join(df,by=c("JPT_NAZWA_"="Województwo")) %>% 
+  filter(wsk== min(wsk) | wsk == max(wsk))
+extreme <- st_centroid(pom)
+
+
+mapa2<-wojewodztwa %>% left_join(df,by=c("JPT_NAZWA_"="Województwo")) %>% ggplot() +
+  geom_sf(aes(fill=(cut(wsk, breaks=breaks, include.lowest=TRUE,labels=breaks_labels))),
+          color="black",name="GWh z OZE na 1000 mieszkańców") +
+  scale_fill_manual(values = kolory,
+                    name =paste0(
+                      "<span style='font-family:LoveloBlack; font-size:75pt; color:white; margin-right:50px;'>━━━━━━━━GWh</span><br>",
+                      "<span style='font-family:arial; font-size:50pt; color:white'>━━━━━━━━━━━━━━━</span><br>",
+                      "<span style='font-family:LoveloBlack; font-size:50pt; color:white'>1000 mieszkańców</span>" )) +
+  theme(
+    panel.background = element_rect(fill = "transparent", color = NA),
+    plot.background  = element_rect(fill = "transparent", color = NA),
+    legend.background  = element_rect(fill = "transparent", color = NA),
+    panel.border = element_blank(),
+    panel.grid = element_blank(),
+    axis.line = element_blank(),
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    legend.text = element_text(family="LoveloBlack",colour="white",size=50),
+    legend.ticks = element_line(colour = "black"),
+    legend.title = element_markdown()) +
+  geom_sf_text(data=extreme, 
+               aes(label=round(wsk,2)),color="black",size=30)+
+  guides(fill= guide_legend(reverse = TRUE,
+                            keywidth = 2,
+                            keyheight = 2))
+?scale_fill_manual
+
+ggsave("wykres3w2.png",mapa2,bg = "transparent", width = 7.5, height = 6, dpi = 600)
+
