@@ -83,11 +83,16 @@ labs(x="Rok",y="Ilość energii w GWh") +
         legend.ticks = element_line(colour = "black"),
         legend.text = element_text(family="LoveloBlack",colour="white",face="bold",size=75),
         legend.title = element_text(family="LoveloBlack",colour = "white",face="bold",size=100),
-        axis.text = element_text(family="LoveloBlack",color = "white",size=75)) +
+        axis.text = element_text(family="LoveloBlack",color = "white",size=75),
+        axis.text.x=element_text(angle=90,vjust=0.5)) +
     geom_segment(data=kreski,aes(x=Rok-0.5, y=Suma, xend=Rok+0.5, yend=Suma),
-                 color="white",linewidth = 0.8, inherit.aes = FALSE)
-?scale_fill_discrete
+                 color="white",linewidth = 0.8, inherit.aes = FALSE)+
+  scale_x_continuous(breaks=unique(kopalneOze$Rok))
+?scale_x_discrete
+View(kopalneOze)
+
 kolumnowy
+
 ggsave("wykres2.png", kolumnowy, bg = "transparent", width = 7.5, height = 6, dpi = 600)
 ###
 # ### Wykrey waflowe - nie używane
@@ -109,7 +114,7 @@ ggsave("wykres2.png", kolumnowy, bg = "transparent", width = 7.5, height = 6, dp
 # ###
 # 
 # kopalneOze%>% select(Rok, Wartość, Source) %>% pivot_wider(names_from=Source, values_from = Wartość)
-colors()
+#colors()
 
 
 
