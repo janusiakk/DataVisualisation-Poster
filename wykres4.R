@@ -265,7 +265,7 @@ p2 <- ggplot(data, aes(x = lata, y = val, color = labelek, fill = labelek)) +
   
   # 3. Dodaj scale_fill_manual(), aby kolory wypełnienia pasowały do linii
   scale_color_manual(values = c("Stan obecny" = "green", "Wzrost Bez Oze" = "black")) +
-  scale_fill_manual(values = c("Stan obecny" = "green", "Wzrost Bez Oze" = "black")) +
+  scale_fill_manual(values = c("Stan obecny" = "green", "Wzrost Bez Oze" = "darkgrey")) +
   
   # Używam theme_minimal() jako zamiennika, jeśli nie masz hrbrthemes
   theme_minimal() + 
@@ -287,7 +287,10 @@ p2 <- ggplot(data, aes(x = lata, y = val, color = labelek, fill = labelek)) +
         axis.text = element_text(family="LoveloBlack",color = "white",size=95),
         axis.title = element_text(family="LoveloBlack",colour = "white",size=98),
         panel.border = element_blank(),
+        axis.title.y = element_text(margin = margin(t = 0, r = 7, b = 0, l = 0)),
+        axis.title.x = element_text(margin = margin(t = 12, r = 0, b = 0, l = 0)),
         legend.title = element_blank())
+  
 
 # Wyświetl wykres
 options(scipen = 999)

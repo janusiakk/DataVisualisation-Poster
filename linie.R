@@ -8,7 +8,7 @@ oze <- data.frame(
 
 library(ggplot2)
 library(tidyr)
-library(tidyverse)
+# library(tidyverse)
 library(GGally)
 
 
@@ -19,6 +19,10 @@ df_long$Rok <- factor(df_long$Rok)
 
 
 
+if (!requireNamespace("GGally", quietly = TRUE)) {
+  install.packages("GGally")
+}
+library(GGally)
 
 
 if (!requireNamespace("extrafont", quietly = TRUE)) {
@@ -94,7 +98,7 @@ p <- ggplot(df_long, aes(x = Rok, y = Wartość, group = Kategoria, color = Kate
 
 
     axis.title = element_text(family = "LoveloBlack", color = "white", size = 75),
-    axis.text  = element_text(family = "LoveloBlack", color = "white", size = 50),
+    axis.text  = element_text(family = "LoveloBlack", color = "white", size = 100),
     
     legend.title = element_text(family = "LoveloBlack", color = "white", size = 75),
     legend.text  = element_text(family = "LoveloBlack", color = "white", size = 55),
@@ -124,7 +128,7 @@ p <- ggplot(df_long, aes(x = Rok, y = Wartość, group = Kategoria, color = Kate
 
 
     axis.title = element_text(family = "LoveloBlack", color = "white", size = 75),
-    axis.text  = element_text(family = "LoveloBlack", color = "white", size = 50),
+    axis.text  = element_text(family = "LoveloBlack", color = "white", size = 67),
     
     legend.title = element_text(family = "LoveloBlack", color = "white", size = 75),
     legend.text  = element_text(family = "LoveloBlack", color = "white", size = 55),
@@ -137,11 +141,13 @@ p <- ggplot(df_long, aes(x = Rok, y = Wartość, group = Kategoria, color = Kate
     panel.grid.major = element_line(color = "gray30"),
     panel.grid.minor  = element_blank(),
 
-    panel.border = element_blank()
+    panel.border = element_blank(),
+    axis.title.y = element_text(margin = margin(t = 0, r = 10, b = 0, l = 0)),
+    axis.title.x = element_text(margin = margin(t = 16, r = 0, b = 0, l = 0))
   )
 
 
 print(p)
-ggsave("wykres1.png", p, bg = "transparent", width = 7, height = 4, dpi = 600)
+ggsave("wykres1.png", p, bg = "transparent", width = 7.5, height = 4, dpi = 600)
 rgb(t(col2rgb("lightblue")), maxColorValue = 255)
 

@@ -76,6 +76,8 @@ labs(x="Rok",y="Ilość energii w GWh") +
   theme(panel.background = element_blank(),
         axis.title = element_text(family="LoveloBlack",colour = "white",size=85),
         plot.background = element_blank(),
+        axis.title.y = element_text(margin = margin(t = 0, r = 7, b = 0, l = 0)),
+        axis.title.x = element_text(margin = margin(t = 7, r = 0, b = 0, l = 0)),
         panel.border = element_blank(),
         plot.title = element_text(colour="white", hjust=0.5),
         axis.ticks = element_line(colour ="white"),
@@ -84,7 +86,7 @@ labs(x="Rok",y="Ilość energii w GWh") +
         legend.text = element_text(family="LoveloBlack",colour="white",face="bold",size=75),
         legend.title = element_text(family="LoveloBlack",colour = "white",face="bold",size=100),
         axis.text = element_text(family="LoveloBlack",color = "white",size=75),
-        axis.text.x=element_text(angle=90,vjust=0.5)) +
+        axis.text.x=element_text(angle=0,vjust=0.5)) +
     geom_segment(data=kreski,aes(x=Rok-0.5, y=Suma, xend=Rok+0.5, yend=Suma),
                  color="white",linewidth = 0.8, inherit.aes = FALSE)+
   scale_x_continuous(breaks=unique(kopalneOze$Rok))

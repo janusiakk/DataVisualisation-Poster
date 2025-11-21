@@ -104,7 +104,7 @@ mapa2<-wojewodztwa %>% left_join(df,by=c("JPT_NAZWA_"="Województwo")) %>% ggplo
   scale_fill_manual(values = kolory,
                     name =paste0(
                       "<span style='font-family:LoveloBlack; font-size:75pt; color:white; margin-right:50px;'>━━━━━━━━GWh</span><br>",
-                      "<span style='font-family:arial; font-size:50pt; color:white'>━━━━━━━━━━━━━━━</span><br>",
+                      "<span style='font-family:arial; font-size:50pt; color:white'>━━━━━━━━━━━━━━━━</span><br>",
                       "<span style='font-family:LoveloBlack; font-size:50pt; color:white'>1000 mieszkańców</span>" )) +
   theme(
     panel.background = element_rect(fill = "transparent", color = NA),
@@ -115,7 +115,7 @@ mapa2<-wojewodztwa %>% left_join(df,by=c("JPT_NAZWA_"="Województwo")) %>% ggplo
     axis.line = element_blank(),
     axis.text = element_blank(),
     axis.ticks = element_blank(),
-    legend.text = element_text(family="LoveloBlack",colour="white",size=50),
+    legend.text = element_text(family="LoveloBlack",colour="white",size=65),
     legend.ticks = element_line(colour = "black"),
     legend.position = c(1.12, 0.65),
     legend.title = element_markdown()) +
@@ -124,7 +124,7 @@ mapa2<-wojewodztwa %>% left_join(df,by=c("JPT_NAZWA_"="Województwo")) %>% ggplo
   guides(fill= guide_legend(reverse = TRUE,
                             keywidth = 2,
                             keyheight = 2))
-# ?scale_fill_manual
+scale_fill_manual
 
 ggsave("wykres3w2.png",mapa2,bg = "transparent", width = 10, height = 6, dpi = 600)
 
