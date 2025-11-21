@@ -92,8 +92,8 @@ labs(x="Rok",y="Ilość energii w GWh") +
                                  margin=margin(t = -13)),
         panel.grid.major.x = element_blank(),
         panel.grid.minor.x = element_blank()) +
-    geom_segment(data=kreski,aes(x=Rok-0.5, y=Suma, xend=Rok+0.5, yend=Suma),
-                 color="white",linewidth = 0.8, inherit.aes = FALSE)+
+  geom_segment(data=kreski,aes(x=Rok-0.5, y=Suma, xend=Rok+0.5, yend=Suma),
+               color="white",linewidth = 0.8, inherit.aes = FALSE)+
   scale_x_continuous(breaks=breaks2)
 ?scale_x_discrete
 View(kopalneOze)
