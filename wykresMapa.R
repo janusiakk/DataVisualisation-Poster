@@ -89,7 +89,7 @@ ggsave("wykres3.png",mapa,bg = "transparent", width = 7.5, height = 6, dpi = 600
 
 breaks=c(0,0.75,1.5,2.25,3,4.5)
 
-gradient=colorRampPalette(c("#c6ffb3","#66ff33"))
+gradient=colorRampPalette(c("#c6ffb3","darkgreen"))
 kolory=(gradient(5))
 breaks_labels=(c("0 - 0.75","0.75 - 1.5","1.5 - 2.25","2.25 - 3","3 - 4.5"))
 
