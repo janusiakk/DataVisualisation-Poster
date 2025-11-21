@@ -46,7 +46,7 @@ p<-ggplot(df_long, aes(x = Rok, y = Wartość, fill = Kategoria)) +
     panel.border = element_blank(),
     # plot.title = element_text(color = "white", size = 16, face = "bold"),
     axis.title = element_text(family="LoveloBlack",color = "white",size=75),
-    axis.text = element_text(family="LoveloBlack",color = "white",size=50),
+    axis.text = element_text(family="LoveloBlack",color = "white",size=60),
     legend.title = element_text(family="LoveloBlack",color = "white",size=75),
     legend.text = element_text(family="LoveloBlack",color = "white",size=55),
     legend.position="bottom",

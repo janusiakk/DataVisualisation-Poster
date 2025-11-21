@@ -24,8 +24,8 @@ if (!requireNamespace("eurostat", quietly = TRUE)) {
 library(eurostat)
 
 
-suseł <- c(823,810,806,814,792,758,745,762,788,733)
-suseł <-c(rep(823,24),suseł)
+emisje_wspk <- c(823,810,806,814,792,758,745,762,788,733)
+emisje_wspk <-c(rep(823,24),emisje_wspk)
 # Definiujemy filtry
 filtry <- list(
   geo = "PL",
@@ -73,8 +73,8 @@ dane_eurostat <- get_eurostat(id = "env_air_gge",
 
 CO2_kt_Elektrownie<-select(dane_eurostat,values)
 
-suseł<-suseł*1000
-Zysk<-suseł*Moc_Oze
+emisje_wspk<-emisje_wspk*1000
+Zysk<-emisje_wspk*Moc_Oze
 Zysk<-Zysk/1000000
 
 CO2_kt_Elektrownie<-rev(CO2_kt_Elektrownie[[1]])
@@ -284,8 +284,8 @@ p2 <- ggplot(data, aes(x = lata, y = val, color = labelek, fill = labelek)) +
         plot.title = element_text(colour="white", hjust=0.4,face="bold",size=15),
         axis.ticks = element_line(colour ="white"),
         legend.text = element_text(family="LoveloBlack",colour="white",face="bold",size=85),
-        axis.text = element_text(family="LoveloBlack",color = "white",size=85),
-        axis.title = element_text(family="LoveloBlack",colour = "white",size=95),
+        axis.text = element_text(family="LoveloBlack",color = "white",size=95),
+        axis.title = element_text(family="LoveloBlack",colour = "white",size=98),
         panel.border = element_blank(),
         legend.title = element_blank())
 
