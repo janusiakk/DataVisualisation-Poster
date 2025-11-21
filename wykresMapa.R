@@ -117,13 +117,14 @@ mapa2<-wojewodztwa %>% left_join(df,by=c("JPT_NAZWA_"="Województwo")) %>% ggplo
     axis.ticks = element_blank(),
     legend.text = element_text(family="LoveloBlack",colour="white",size=50),
     legend.ticks = element_line(colour = "black"),
+    legend.position = c(1.12, 0.65),
     legend.title = element_markdown()) +
   geom_sf_text(data=extreme, 
                aes(label=round(wsk,2)),color="black",size=30)+
   guides(fill= guide_legend(reverse = TRUE,
                             keywidth = 2,
                             keyheight = 2))
-?scale_fill_manual
+# ?scale_fill_manual
 
-ggsave("wykres3w2.png",mapa2,bg = "transparent", width = 7.5, height = 6, dpi = 600)
+ggsave("wykres3w2.png",mapa2,bg = "transparent", width = 10, height = 6, dpi = 600)
 
