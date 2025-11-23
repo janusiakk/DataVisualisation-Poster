@@ -22,7 +22,7 @@ library(showtext)
 if (!requireNamespace("ggtext", quietly = TRUE)) {
   install.packages("ggtext")}
 library(ggtext)
-font_add("LoveloBlack", "Lovelo-Black.otf") 
+font_add("LoveloBlack", "Kody/Lovelo-Black.otf") 
 font.families()
 showtext_auto(enable = TRUE)
 
@@ -81,7 +81,7 @@ mapa<-wojewodztwa %>% left_join(df,by=c("JPT_NAZWA_"="Województwo")) %>% ggplot
         legend.ticks = element_line(colour = "black"),
         legend.title = element_markdown())
 mapa
-ggsave("WYkresy/wykres3.png",mapa,bg = "transparent", width = 7.5, height = 6, dpi = 600)
+ggsave("WYkresy/wykres3outdated.png",mapa,bg = "transparent", width = 7.5, height = 6, dpi = 600)
 
 ###
 ### Generowanie mapy 2 - inne kolor, skale, podpis min max

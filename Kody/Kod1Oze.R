@@ -33,7 +33,7 @@ library(extrafont)
 if (!requireNamespace("showtext", quietly = TRUE)) {
   install.packages("showtext")}
 library(showtext)
-font_add("LoveloBlack", "Lovelo-Black.otf")
+font_add("LoveloBlack", "Kody/Lovelo-Black.otf")
 font.families()
 showtext_auto(enable = TRUE)
 oze <- data.frame(

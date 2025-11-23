@@ -9,7 +9,7 @@ library(showtext)
 if (!requireNamespace("ggtext", quietly = TRUE)) {
   install.packages("ggtext")}
 library(ggtext)
-font_add("LoveloBlack", "Lovelo-Black.otf") 
+font_add("LoveloBlack", "Kody/Lovelo-Black.otf") 
 font.families()
 showtext_auto(enable = TRUE)
 

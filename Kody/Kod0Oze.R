@@ -6,7 +6,7 @@ library(extrafont)
 if (!requireNamespace("showtext", quietly = TRUE)) {
   install.packages("showtext")}
 library(showtext)
-font_add("LoveloBlack", "Lovelo-Black.otf")
+font_add("LoveloBlack", "Kody/Lovelo-Black.otf")
 font.families()
 showtext_auto(enable = TRUE)
 oze <- data.frame(
@@ -55,5 +55,5 @@ p<-ggplot(df_long, aes(x = Rok, y = Wartość, fill = Kategoria)) +
 
   )
 p
-ggsave("Wykresy/wykres0.png", p, bg = "transparent", width = 7, height = 4, dpi = 600)
+ggsave("Wykresy/wykres0outdated.png", p, bg = "transparent", width = 7, height = 4, dpi = 600)
 rgb(t(col2rgb("lightblue")), maxColorValue = 255)
