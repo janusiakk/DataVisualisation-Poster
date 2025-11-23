@@ -31,7 +31,7 @@ library(forcats)
 ### Wczytuję dane
 # kopalne <- read.csv2("Dane/Kopalne.csv",sep=";",fileEncoding = "Windows-1250")
 # oze <- read.csv2("Dane/OZE.csv",sep=";", fileEncoding = "Windows-1250")
-kopalneOze <- read.csv("Dane/KopalneIOZE.csv",sep=";",fileEncoding = "Windows-1250")
+kopalneOze <- read.csv("../Dane/KopalneIOZE.csv",sep=";",fileEncoding = "Windows-1250")
 
 
 # View(oze)
