@@ -8,8 +8,8 @@ Pokazaliśmy mix energetyczny Polski w latach z podziałem na źródła. Zawarli
 Ostatnim wykresem jest zestawienie produkowanego CO2 podczas produckji energii elektrycznej uwzględniając OZE i nie uwzględniając OZE.
 
 Opis folderów:
-- Dane: pliki potrzebne do wygenerowaniw wykresów/map m.in w formacie .csv
-- Kody: pliki .R i czcionka potrzeben do wygenerowania wykresów
+- Dane: pliki potrzebne do wygenerowania wykresów/map m.in w formacie .csv
+- Kody: pliki .R i czcionka potrzebna do wygenerowania wykresów
 - Wykresy: wykresy w formacie .png, z których część znalazła się na plakacie
 
 Dane
