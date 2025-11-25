@@ -3,8 +3,8 @@ Autorzy:
 Kamil Janusiak, Jan Lis, Jędrzej Kwaśny
 
 Opis folderów:
-- Dane: pliki potrzebne do wygenerowaniw wykresów/map m.in w formacie .csv
-- Kody: pliki .R i czcionka potrzeben do wygenerowania wykresów
+- Dane: pliki potrzebne do wygenerowania wykresów/map m.in w formacie .csv
+- Kody: pliki .R i czcionka potrzebna do wygenerowania wykresów
 - Wykresy: wykresy w formacie .png, z których część znalazła się na plakacie
 
 Dane
