@@ -2,10 +2,7 @@
 Autorzy:
 Kamil Janusiak, Jan Lis, Jędrzej Kwaśny
 
-Plakat przedstawia zmiany w polskim systemie produkcj energii elektrycznej ze szczególnym skupieniem się na odnawialnych źródłach energii.
-Na wykresach ujęliśmy zmiany w produkcji energii elektrycznej na przestrzeni lat względem źródła energii odnawialnej.
-Pokazaliśmy mix energetyczny Polski w latach z podziałem na źródła. Zawarliśmy mapkę Polski z podziałem na województwa z wyliczonym wskaźnikiem opisującym produkcję energii elektrycznej względme liczby mieszkańców.
-Ostatnim wykresem jest zestawienie produkowanego CO2 podczas produckji energii elektrycznej uwzględniając OZE i nie uwzględniając OZE.
+Plakat przedstawia zmiany w polskim systemie produkcj energii elektrycznej ze szczególnym skupieniem się na odnawialnych źródłach energii. Na wykresach ujęliśmy zmiany w produkcji energii elektrycznej na przestrzeni lat względem źródła energii odnawialnej.Pokazaliśmy mix energetyczny Polski w latach z podziałem na źródła. Zawarliśmy mapkę Polski z podziałem na województwa z wyliczonym wskaźnikiem opisującym produkcję energii elektrycznej względme liczby mieszkańców.Ostatnim wykresem jest zestawienie produkowanego CO2 podczas produckji energii elektrycznej uwzględniając OZE i nie uwzględniając OZE.
 
 Opis folderów:
 - Dane: pliki potrzebne do wygenerowania wykresów/map m.in w formacie .csv
